@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Cinzel, EB_Garamond } from "next/font/google";
 import Link from "next/link";
+import { Suspense } from "react";
 import { SITE_NAME } from "@/lib/content";
+import { UserNav } from "./user-nav";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -28,6 +30,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <nav>
             <Link href="/">Home</Link>
             <Link href="/planets">Planets</Link>
+            <Suspense fallback={null}>
+              <UserNav />
+            </Suspense>
           </nav>
         </header>
         <main>{children}</main>

@@ -1,19 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
+import { getSupabaseConfig } from "@/lib/supabase-config";
 
-// Server-side only: these env vars have no NEXT_PUBLIC_ prefix, so they are
-// never shipped to the browser. The publishable (anon) key is subject to RLS.
+// Anonymous client for public catalogue data (e.g. planets). It has no user
+// session, so it is safe inside "use cache" functions. For user-scoped data
+// use createSupabaseServerClient() from supabase-server.ts instead.
 export function createSupabaseClient() {
-  const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_PUBLISHABLE_KEY;
-
-  if (!url || !key) {
-    throw new Error(
-      "Missing SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY environment variable.",
-    );
-  }
-
-  // supabase-js appends /rest/v1 itself, so strip any path/trailing slash.
-  return createClient(new URL(url).origin, key, {
-    auth: { persistSession: false },
-  });
+  const { url, key } = getSupabaseConfig();
+  return createClient(url, key, { auth: { persistSession: false } });
 }
