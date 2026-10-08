@@ -19,6 +19,7 @@ export type Planet = {
   activities: string[];
   activeConflicts: string[];
   activeEnemies: string[];
+  unitFactions: string[]; // exact OpenHammer API faction names for this area
 };
 
 // Row shape of public.planets (see supabase/migrations).
@@ -40,6 +41,7 @@ type PlanetRow = {
   activities: string[];
   active_conflicts: string[];
   active_enemies: string[];
+  unit_factions: string[];
 };
 
 function toPlanet(row: PlanetRow): Planet {
@@ -61,6 +63,7 @@ function toPlanet(row: PlanetRow): Planet {
     activities: row.activities,
     activeConflicts: row.active_conflicts,
     activeEnemies: row.active_enemies,
+    unitFactions: row.unit_factions ?? [],
   };
 }
 

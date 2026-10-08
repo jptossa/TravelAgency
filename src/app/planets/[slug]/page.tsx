@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { getPlanetBySlug, getPlanets } from "@/lib/planets";
+import { PlanetForces } from "./planet-forces";
 
 export async function generateStaticParams() {
   const planets = await getPlanets();
@@ -65,6 +67,10 @@ export default async function PlanetPage({
       <List title="Top activities" items={planet.activities} />
       <List title="Active conflicts" items={planet.activeConflicts} />
       <List title="Active enemies of the Imperium" items={planet.activeEnemies} />
+
+      <Suspense fallback={<p className="muted">Loading forces in the region…</p>}>
+        <PlanetForces factions={planet.unitFactions} />
+      </Suspense>
     </article>
   );
 }

@@ -304,3 +304,52 @@ dd {
   text-align: center;
   padding: 3rem 0;
 }
+
+/* Forces in the region ---------------------------------------------- */
+
+.muted {
+  color: var(--parchment-dim);
+  font-style: italic;
+}
+
+.faction-block {
+  margin-bottom: 1.75rem;
+  overflow-x: auto;
+}
+
+.faction-block h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--parchment);
+}
+
+.unit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--gold-dim);
+}
+
+.unit-table th,
+.unit-table td {
+  padding: 0.4rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(122, 100, 48, 0.35);
+  white-space: nowrap;
+}
+
+.unit-table th:first-child,
+.unit-table td:first-child {
+  text-align: left;
+  white-space: normal;
+}
+
+.unit-table th {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--panel-raised);
+}

@@ -3,38 +3,44 @@
 insert into public.planets (
   slug, name, system, description, planet_type, controlling_faction,
   tithe_grade, population, climate, price_thrones, danger_level, travel_time,
-  attractions, activities, active_conflicts, active_enemies
+  attractions, activities, active_conflicts, active_enemies, unit_factions
 ) values
   ('holy-terra', 'Holy Terra', 'Sol', 'The cradle of humanity and seat of the Imperium. Placeholder description.', 'Throneworld', 'Adeptus Terra', 'Exactis Extremis', 'Over 20 billion', 'Polluted, continent-spanning hive-cities and mountain-sized palaces', 12000, 2, 'N/A (origin)',
    array['The Imperial Palace', 'The Golden Throne viewing gallery', 'Ecclesiarchy cathedrals']::text[],
    array['Pilgrimage walks', 'Guided Palace tours', 'Relic markets']::text[],
    array['Cult uprisings in the lower hives']::text[],
-   array['Genestealer cults', 'Chaos infiltrators']::text[]),
+   array['Genestealer cults', 'Chaos infiltrators']::text[],
+   array['Adeptus Custodes', 'Genestealer Cults']::text[]),
   ('cadia', 'Cadia', 'Cadian', 'A fortress world standing guard at the Eye of Terror. Placeholder description.', 'Fortress World', 'Astra Militarum', 'Solutio Extremis', 'Roughly 4 billion', 'Temperate, with harsh storms', 4500, 5, '6 weeks',
    array['Kasr fortress walls', 'Monument to the fallen']::text[],
    array['Military history tours', 'Live-fire demonstrations']::text[],
    array['Siege of the Cadian Gate']::text[],
-   array['Black Legion', 'Chaos cultists']::text[]),
+   array['Black Legion', 'Chaos cultists']::text[],
+   array['Astra Militarum', 'Chaos Space Marines']::text[]),
   ('macragge', 'Macragge', 'Macragge', 'Home of the Ultramarines and the realm of Ultramar. Placeholder description.', 'Civilised World', 'Ultramarines', 'Decuma Particular', 'Around 3 billion', 'Mild coastal plains and snowy highlands', 6800, 3, '5 weeks',
    array['Fortress of Hera', 'Hall of Heroes']::text[],
    array['Honour-guard parade viewing', 'Highland trekking']::text[],
    array['Skirmishes along the Ultramar border']::text[],
-   array['Tyranid splinter fleets']::text[]),
+   array['Tyranid splinter fleets']::text[],
+   array['Ultramarines', 'Tyranids']::text[]),
   ('fenris', 'Fenris', 'Fenris', 'A frozen death world of ice and storms, home of the Space Wolves. Placeholder description.', 'Death World', 'Space Wolves', 'Aptus Non', 'Sparse tribal settlements', 'Arctic, with perpetual storms and shifting ice', 3200, 4, '4 weeks',
    array['The Fang', 'Aett of the Wolf Kings']::text[],
    array['Frost-beast hunts', 'Sagas around the great hall fires']::text[],
    array['Wolf-clan feuds']::text[],
-   array['Thousand Sons raiders']::text[]),
+   array['Thousand Sons raiders']::text[],
+   array['Space Wolves', 'Thousand Sons']::text[]),
   ('armageddon', 'Armageddon', 'Armageddon', 'An industrial hive world of vast factories and ash wastes. Placeholder description.', 'Hive World', 'Imperial Governor / Astra Militarum', 'Exactis Particular', 'Over 10 billion', 'Ash wastes and acidic rains', 2900, 4, '7 weeks',
    array['Hive Infernus', 'The Ash Wastes overlook']::text[],
    array['Factory tours', 'Ork-hunting excursions']::text[],
    array['Third War for Armageddon']::text[],
-   array['Ork WAAAGH! Ghazghkull', 'Daemons']::text[]),
+   array['Ork WAAAGH! Ghazghkull', 'Daemons']::text[],
+   array['Astra Militarum', 'Orks']::text[]),
   ('catachan', 'Catachan', 'Catachan', 'A lethal jungle death world where everything wants you dead. Placeholder description.', 'Death World', 'Catachan Jungle Fighters', 'Aptus Non', 'Sparse, scattered tribes', 'Dense, carnivorous jungle', 2100, 5, '8 weeks',
    array['Devil''s Reach canopy', 'Sentient flora gardens']::text[],
    array['Survival trek', 'Wildlife safari (no refunds)']::text[],
    array['Ongoing predator culls']::text[],
-   array['Tyranid scouts', 'Hostile megafauna']::text[])
+   array['Tyranid scouts', 'Hostile megafauna']::text[],
+   array['Astra Militarum', 'Tyranids']::text[])
 on conflict (slug) do update set
   name = excluded.name,
   system = excluded.system,
@@ -50,4 +56,5 @@ on conflict (slug) do update set
   attractions = excluded.attractions,
   activities = excluded.activities,
   active_conflicts = excluded.active_conflicts,
-  active_enemies = excluded.active_enemies;
+  active_enemies = excluded.active_enemies,
+  unit_factions = excluded.unit_factions;
