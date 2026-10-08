@@ -12,5 +12,8 @@ export function createSupabaseClient() {
     );
   }
 
-  return createClient(url, key, { auth: { persistSession: false } });
+  // supabase-js appends /rest/v1 itself, so strip any path/trailing slash.
+  return createClient(new URL(url).origin, key, {
+    auth: { persistSession: false },
+  });
 }
