@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { AMENITIES, BENEFITS, MISSION_STATEMENT } from "@/lib/content";
+import {
+  AMENITIES,
+  BENEFITS,
+  DISCLAIMER_TERMS,
+  MISSION_STATEMENT,
+} from "@/lib/content";
 
 export default function Home() {
   return (
@@ -31,6 +36,16 @@ export default function Home() {
           </ul>
         </section>
       </div>
+
+      <section className="disclaimer">
+        <h2>Disclaimer</h2>
+        {DISCLAIMER_TERMS.map((term) => (
+          <div key={term.title}>
+            <h3>{term.title}</h3>
+            <p>{term.text}</p>
+          </div>
+        ))}
+      </section>
     </>
   );
 }
