@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { signOut } from "@/app/auth/actions";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, isAdmin } from "@/lib/auth";
 
 // Reads the session, so it must render behind <Suspense> (see layout.tsx).
 export async function UserNav() {
@@ -15,8 +15,11 @@ export async function UserNav() {
     );
   }
 
+  const admin = await isAdmin(user.id);
+
   return (
     <>
+      {admin && <Link href="/admin">Admin</Link>}
       <Link href="/account">Account</Link>
       <form action={signOut}>
         <button type="submit" className="link-button">

@@ -1,4 +1,4 @@
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import { createSupabaseClient } from "@/lib/supabase";
 
 export type Planet = {
@@ -23,7 +23,7 @@ export type Planet = {
 };
 
 // Row shape of public.planets (see supabase/migrations).
-type PlanetRow = {
+export type PlanetRow = {
   id: string;
   slug: string;
   name: string;
@@ -44,7 +44,7 @@ type PlanetRow = {
   unit_factions: string[];
 };
 
-function toPlanet(row: PlanetRow): Planet {
+export function toPlanet(row: PlanetRow): Planet {
   return {
     id: row.id,
     slug: row.slug,
@@ -70,6 +70,7 @@ function toPlanet(row: PlanetRow): Planet {
 // Catalogue data is public and changes rarely, so cache query results.
 export async function getPlanets(): Promise<Planet[]> {
   "use cache";
+  cacheTag("planets");
   cacheLife("hours");
 
   const { data, error } = await createSupabaseClient()
@@ -83,6 +84,7 @@ export async function getPlanets(): Promise<Planet[]> {
 
 export async function getPlanetBySlug(slug: string): Promise<Planet | null> {
   "use cache";
+  cacheTag("planets");
   cacheLife("hours");
 
   const { data, error } = await createSupabaseClient()

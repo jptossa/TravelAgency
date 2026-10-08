@@ -529,3 +529,38 @@ button.button:disabled {
 .status[data-status="cancelled"] {
   color: var(--crimson-bright);
 }
+
+/* Admin ------------------------------------------------------------- */
+
+.auth-form select {
+  padding: 0.6rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--parchment);
+  background: var(--panel);
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+}
+
+.field-hint {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--parchment-dim);
+}
+
+.admin-form {
+  max-width: 36rem;
+}
+
+.booking-admin-row p {
+  margin: 0;
+}
+
+.booking-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}
