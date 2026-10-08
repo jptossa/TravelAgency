@@ -30,7 +30,9 @@ export default async function PlanetPage({
 
   return (
     <article>
-      <Link href="/planets">← All destinations</Link>
+      <Link href="/planets" className="back-link">
+        ← All destinations
+      </Link>
       <h1>{planet.name}</h1>
       <p>{planet.description}</p>
 
@@ -50,7 +52,11 @@ export default async function PlanetPage({
         <dt>Price</dt>
         <dd>{planet.priceThrones.toLocaleString("en-US")} Thrones</dd>
         <dt>Danger level</dt>
-        <dd>{planet.dangerLevel} / 5</dd>
+        <dd>
+          <span className="danger" data-level={planet.dangerLevel}>
+            {planet.dangerLevel} / 5
+          </span>
+        </dd>
         <dt>Travel time</dt>
         <dd>{planet.travelTime}</dd>
       </dl>

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-A travel agency site for the solar systems and planets of the Warhammer 40k galaxy. Next.js 16 (App Router, TypeScript, `src/` dir, `@/*` → `src/*`) with Supabase as the database. Styling is deliberately deferred: no Tailwind, `globals.css` is empty, pages are plain semantic HTML.
+A travel agency site for the solar systems and planets of the Warhammer 40k galaxy. Next.js 16 (App Router, TypeScript, `src/` dir, `@/*` → `src/*`) with Supabase as the database. Styling is plain CSS (no Tailwind) in `src/app/globals.css`, themed on the Imperium of Man: void-black background, aged gold and crimson accents, parchment text, Cinzel headings and EB Garamond body (via `next/font/google` in `layout.tsx`). Colours and fonts are CSS variables in `:root`; pages are semantic HTML with a few classes (`planet-card`, `danger[data-level]`, `button`).
 
 ## Commands
 

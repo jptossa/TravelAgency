@@ -1,1 +1,306 @@
-/* Intentionally unstyled — styling comes in a later step. */
+/* Imperium of Man theme: void-black, aged gold, Imperial crimson, parchment. */
+
+:root {
+  --void: #0b0908;
+  --panel: #14100d;
+  --panel-raised: #1c1612;
+  --gold: #c8a24a;
+  --gold-bright: #e6c56a;
+  --gold-dim: #7a6430;
+  --crimson: #8f1414;
+  --crimson-bright: #e25555;
+  --parchment: #e9dcc0;
+  --parchment-dim: #a89c80;
+
+  --font-display: var(--font-cinzel), "Trajan Pro", Georgia, serif;
+  --font-body: var(--font-garamond), Georgia, "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--void);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--parchment);
+  background:
+    radial-gradient(ellipse at top, rgba(143, 20, 20, 0.18), transparent 55%),
+    var(--void);
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--gold-bright);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* Header ------------------------------------------------------------ */
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background: var(--panel);
+  border-bottom: 3px double var(--gold-dim);
+}
+
+header > a {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+}
+
+header nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+header nav a {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--parchment);
+}
+
+header nav a:hover {
+  color: var(--gold-bright);
+}
+
+main {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 2.5rem clamp(1rem, 4vw, 3rem) 4rem;
+}
+
+/* Landing page ------------------------------------------------------ */
+
+.hero {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.hero p {
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1.35rem;
+  font-style: italic;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.65rem 1.8rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  background: var(--crimson);
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--crimson-bright);
+  color: #fff;
+  text-decoration: none;
+}
+
+.feature-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 0 3rem;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+li::marker {
+  color: var(--gold);
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+/* Planet list ------------------------------------------------------- */
+
+.planet-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+}
+
+.planet-card {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--gold-dim);
+  border-top: 3px solid var(--crimson);
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.planet-card:hover,
+.planet-card:focus-within {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.planet-card a {
+  display: block;
+  height: 100%;
+  padding: 1.1rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.planet-card h2 {
+  margin: 0 0 0.25rem;
+  padding: 0;
+  border: 0;
+  font-size: 1.3rem;
+}
+
+.planet-card .meta {
+  margin: 0 0 0.75rem;
+  color: var(--parchment-dim);
+  font-size: 1rem;
+}
+
+.planet-card .stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Danger levels ----------------------------------------------------- */
+
+.danger {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.danger[data-level="1"],
+.danger[data-level="2"] {
+  color: #8fb06a;
+}
+
+.danger[data-level="3"] {
+  color: var(--gold-bright);
+}
+
+.danger[data-level="4"],
+.danger[data-level="5"] {
+  color: var(--crimson-bright);
+}
+
+/* Planet page ------------------------------------------------------- */
+
+.back-link {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+article > h1 {
+  margin-top: 1rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 2rem;
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 1.5rem;
+  background: var(--panel);
+  border: 1px solid var(--gold-dim);
+  border-left: 3px solid var(--crimson);
+}
+
+dt {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  align-self: baseline;
+}
+
+dd {
+  margin: 0;
+}
+
+@media (max-width: 34rem) {
+  dl {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  dd {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Not found --------------------------------------------------------- */
+
+.not-found {
+  text-align: center;
+  padding: 3rem 0;
+}
