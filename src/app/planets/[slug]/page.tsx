@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { getPlanetBySlug, getPlanets } from "@/lib/planets";
+import { PlanetActions } from "./planet-actions";
 import { PlanetForces } from "./planet-forces";
 
 export async function generateStaticParams() {
@@ -70,6 +71,10 @@ export default async function PlanetPage({
 
       <Suspense fallback={<p className="muted">Loading forces in the region…</p>}>
         <PlanetForces factions={planet.unitFactions} />
+      </Suspense>
+
+      <Suspense fallback={<p className="muted">Loading booking options…</p>}>
+        <PlanetActions planetId={planet.id} planetName={planet.name} />
       </Suspense>
     </article>
   );
