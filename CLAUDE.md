@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-A travel agency site for the solar systems and planets of the Warhammer 40k galaxy. Next.js 16 (App Router, TypeScript, `src/` dir, `@/*` → `src/*`) with Supabase planned as the database. **Supabase is not connected yet** — all data is mocked. Styling is deliberately deferred: no Tailwind, `globals.css` is empty, pages are plain semantic HTML.
+A travel agency site for the solar systems and planets of the Warhammer 40k galaxy. Next.js 16 (App Router, TypeScript, `src/` dir, `@/*` → `src/*`) with Supabase as the database. Styling is deliberately deferred: no Tailwind, `globals.css` is empty, pages are plain semantic HTML.
 
 ## Commands
 
@@ -25,7 +25,8 @@ There is no test runner configured.
 
 ## Architecture
 
-- **Data seam:** `src/lib/planets.ts` holds the mock `PLANETS` array and exposes only async `getPlanets()` and `getPlanetBySlug(slug)`. Pages must go through these functions and never import the array, so connecting Supabase means rewriting those function bodies only.
-- **`Planet` type** (defined in `planets.ts`) has user-specified fields: planet type, controlling faction, tithe grade, population, climate, price (Thrones), danger level (1–5), travel time, and string lists for attractions, activities, active conflicts and active enemies. Mock values are placeholders (tithe grade names should be verified against lore); don't add fields without asking the user.
+- **Data layer:** `src/lib/planets.ts` exposes async `getPlanets()` and `getPlanetBySlug(slug)`, which query the Supabase `planets` table (snake_case rows mapped to the camelCase `Planet` type) and are cached with `"use cache"` + `cacheLife("hours")`. Pages must only use these functions. `src/lib/supabase.ts` builds the server-side client from `SUPABASE_URL` and `SUPABASE_PUBLISHABLE_KEY` (no `NEXT_PUBLIC_` prefix, so never sent to the browser).
+- **Schema:** `supabase/migrations/` holds the table (RLS on, public read-only); `supabase/seed.sql` upserts the six starter planets. Changing the `Planet` type means updating the migration, `PlanetRow`/`toPlanet`, and the seed together.
+- **`Planet` type** has user-specified fields: planet type, controlling faction, tithe grade, population, climate, price (Thrones), danger level (1–5), travel time, and string lists for attractions, activities, active conflicts and active enemies. Seed values are placeholders (tithe grade names should be verified against lore); don't add fields without asking the user.
 - **Landing-page copy** (mission statement, benefits, amenities, site name) lives in `src/lib/content.ts` as placeholder text.
 - **Routes** (all server components): `/` (`app/page.tsx`), `/planets` (list), `/planets/[slug]` (show page; `generateStaticParams` from `getPlanets()`, `notFound()` for unknown slugs, with a segment-level `not-found.tsx`).
