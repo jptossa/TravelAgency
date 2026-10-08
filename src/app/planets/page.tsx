@@ -11,7 +11,9 @@ export default async function PlanetsPage() {
         {planets.map((planet) => (
           <li key={planet.id}>
             <Link href={`/planets/${planet.slug}`}>{planet.name}</Link> —{" "}
-            {planet.system} system
+            {planet.system} system · {planet.planetType} · Danger{" "}
+            {planet.dangerLevel}/5 ·{" "}
+            {planet.priceThrones.toLocaleString("en-US")} Thrones
           </li>
         ))}
       </ul>

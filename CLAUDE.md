@@ -26,6 +26,6 @@ There is no test runner configured.
 ## Architecture
 
 - **Data seam:** `src/lib/planets.ts` holds the mock `PLANETS` array and exposes only async `getPlanets()` and `getPlanetBySlug(slug)`. Pages must go through these functions and never import the array, so connecting Supabase means rewriting those function bodies only.
-- **`Planet` type is intentionally minimal** (`id`, `slug`, `name`, `system`, `description`). The user wants to be **asked** for the per-planet detail fields and real data when that step comes — do not invent fields.
+- **`Planet` type** (defined in `planets.ts`) has user-specified fields: planet type, controlling faction, tithe grade, population, climate, price (Thrones), danger level (1–5), travel time, and string lists for attractions, activities, active conflicts and active enemies. Mock values are placeholders (tithe grade names should be verified against lore); don't add fields without asking the user.
 - **Landing-page copy** (mission statement, benefits, amenities, site name) lives in `src/lib/content.ts` as placeholder text.
 - **Routes** (all server components): `/` (`app/page.tsx`), `/planets` (list), `/planets/[slug]` (show page; `generateStaticParams` from `getPlanets()`, `notFound()` for unknown slugs, with a segment-level `not-found.tsx`).
